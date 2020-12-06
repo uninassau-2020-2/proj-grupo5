@@ -1,0 +1,107 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav mode="side" #sidenav position="right" mode="over" [fixedTopGap]="60" [fixedInViewport]="true">
+      <div class="row remove-negative-margin">
+        <div class="static-sidenav col-5">
+          <div class="btn-nav">
+            <mat-icon class="sub-menu-icon home">home</mat-icon>
+            <div class="size-icon-sidenav" (click)="sidenav.toggle()" routerLink="/home" routerLinkActive="active">Home</div>
+          </div>
+
+          <div class="btn-nav">
+            <mat-icon class="sub-menu-icon home">web</mat-icon>
+            <div class="size-icon-sidenav" (click)="sidenav.toggle()" routerLink="/dashboard" routerLinkActive="active">DashBoard</div>
+          </div>
+  
+        </div>
+        <div class="col-7 margin-left-details-menu">
+          <div>
+             
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">storefront</mat-icon>
+              <div class="sub-menu-title">Produtos</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/produto" routerLinkActive="active">
+                Novo Produto</div>
+            </div>
+            
+            <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/cliente" routerLinkActive="active"></div>
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">groups</mat-icon>
+              <div class="sub-menu-title">Empregados</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/empregado" routerLinkActive="active">
+                Novo Empregado</div>
+            </div>
+            
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">local_shipping</mat-icon>
+              <div class="sub-menu-title">Fornecedores</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/fornecedor" routerLinkActive="active">
+                Novo Fornecedor</div>
+            </div>
+
+            <div class="sub-menu">
+              <mat-icon class="sub-menu-icon">event_note</mat-icon>
+              <div class="sub-menu-title">Pedidos</div>
+            </div>
+            <div class="sub-menu-items">
+              <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/pedido" routerLinkActive="active">
+                Iniciar Pedido</div>
+            </div>
+
+            
+            <div *ngIf="userName === 'Administrador'">
+              
+              <div class="sub-menu">
+                <mat-icon class="sub-menu-icon">local_grocery_store</mat-icon>
+                <div class="sub-menu-title">Vendas</div>
+              </div>
+              <div class="sub-menu-items">
+                <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/vendas" routerLinkActive="active">
+                  Vendas</div>
+              </div>
+
+              <div class="sub-menu">
+                <mat-icon class="sub-menu-icon">account_circle</mat-icon>
+                <div class="sub-menu-title">Usuários</div>
+              </div>
+              <div class="sub-menu-items">
+                <div class="sub-menu-items-description item-color" (click)="sidenav.toggle()" routerLink="/usuario"
+                  routerLinkActive="active">Novo Usuário</div>
+              </div>
+            </div>
+
+          </div>
+        
+  
+        </div>
+
+        
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar class="header-toolbar" [hidden]="hiddenMenu">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div class="font-header">O Rei do Cangaço</div>
+        <span class="toolbar-spacer"></span>
+        <div class="foto-usuario"><img src="./assets/imagens/usuario.png" alt="logo"/> </div>
+        {{ userName }}
+        <mat-icon class="icons-margim">notifications_active</mat-icon>
+        <mat-icon style="margin-right: 15px" class="icons-margim" (click)="onLogout()">input</mat-icon>
+      </mat-toolbar>
+      <div class="wrapper-sub-header" [hidden]="hiddenMenu">
+      </div>
+      <router-outlet>
+        <div class="img-logo">
+          <img  *ngIf="isHome" src="./assets/imagens/logo.jpg" alt="logo"/>
+        </div>
+      </router-outlet>
+  
+    </mat-sidenav-content>
+  </mat-sidenav-container>

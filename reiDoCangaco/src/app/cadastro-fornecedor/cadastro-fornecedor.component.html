@@ -1,0 +1,364 @@
+<section>
+  <div class="container-fluid">
+    <div class="col-12">
+      <mat-card class="mat-card-padrao">
+        <div class="row">
+          <div class="col-12">
+            <mat-card-title>Cadastro de Fornecedores
+            </mat-card-title>
+            <h1 class="id">ID do Fornecedor: 0000</h1>
+
+            <form [formGroup]="formsRegister" class="row">
+              <div class="col-12">
+                <mat-card class="mat-card-padrao">
+                  <div class="dados mb-2">Dados do Fornecedor</div>
+
+                  <mat-form-field class="col-4">
+                    <mat-label>Tipo de Fornecedor</mat-label>
+                    <mat-select matNativeControl formControlName="tipoFornecedor"
+                      value="formsRegister.value.tipoFornecedor" (selectionChange)="fornecedorSelecionado($event)">
+                      <mat-option>Selecione</mat-option>
+                      <mat-option value="fornecedorPJ">Fornecedor PJ</mat-option>
+                      <mat-option value="fornecedorPF">Fornecedor PF</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <mat-label>Nome</mat-label>
+                    <input matInput placeholder="Nome" 
+                    formControlName="nome" value={{formsRegister.value.nome}} >
+                  </mat-form-field>
+
+                  <mat-form-field class="col-4" 
+                  *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ' || formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                      <mat-label>NickName</mat-label>
+                      <input matInput placeholder="NickName"
+                      formControlName="nickName" value={{formsRegister.value.nickName}}>
+                  </mat-form-field>
+
+                  <mat-form-field class="col-3" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <input matInput readonly [matDatepicker]="picker" placeholder="Data de nascimento"
+                     formControlName="dataNascimento" value={{formsRegister.value.DataNascimento}}>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>          
+                  </mat-form-field>
+
+                  <mat-form-field class="col-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select matNativeControl formControlName="sexo" value={{formsRegister.value.sexo}}>
+                        <mat-option>Selecione</mat-option>
+                        <mat-option value="M">Masculino</mat-option>
+                        <mat-option value="F">Feminino</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+                  <mat-label>CPF</mat-label>
+                    <input matInput placeholder="CPF" 
+                    formControlName="cpf" value={{formsRegister.value.cpf}}>         
+                </mat-form-field>
+
+                  <mat-form-field class="col-4" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
+                    <mat-label>Razão Social</mat-label>
+                  <input matInput placeholder="Razão Social" 
+                 formControlName="razaoSocial" value={{formsRegister.value.razaoSocial}}>
+                </mat-form-field>
+
+                <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
+                  <mat-label>Nome Fantasia</mat-label>
+                  <input matInput placeholder="Nome Fantasia" 
+                  formControlName="nomeFantasia" value={{formsRegister.value.nomeFantasia}}>
+                </mat-form-field>
+
+                <mat-form-field class="col-6" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
+                    <mat-label>CNPJ</mat-label>
+                    <input matInput placeholder="CNPJ"
+                    formControlName="cnpj" value={{formsRegister.value.cnpj}}>
+                </mat-form-field>
+                </mat-card>
+            </div>
+
+            <div class="col-12">  
+            <mat-card class="mat-card-padrao">
+              <div class="dados mb-2">Contatos</div>
+              <mat-form-field class="col-4">
+                <mat-label>Telefone</mat-label>
+                <input matInput placeholder="Telefone" 
+                formControlName="telefone" value={{formsRegister.value.telefone}} >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>Celular</mat-label>
+                <input matInput placeholder="Celular" 
+                formControlName="celular" value={{formsRegister.value.celular}} >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>E-Mail</mat-label>
+                <input matInput placeholder="E-Mail" pattern="^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$"
+                formControlName="email" value={{formsRegister.value.email}} >
+              </mat-form-field>
+
+            </mat-card>
+            </div>
+            <div class="col-12">  
+            <mat-card class="mat-card-padrao">
+              <div class="dados mb-2">Endereço</div> 
+
+              <mat-form-field class="col-4">
+                <mat-label>Endereço</mat-label>
+                <input matInput placeholder="Endereço"
+                formControlName="endereco" value={{formsRegister.value.endereco}} >
+              </mat-form-field>
+
+              <mat-form-field class="col-2">
+                <mat-label>Complemento</mat-label>
+                <input matInput placeholder="Complemento"
+                formControlName="complemento" value={{formsRegister.value.complemento}} >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>Bairro</mat-label>
+                <input matInput placeholder="Bairro"
+                formControlName="bairro" value={{formsRegister.value.bairro}}>
+              </mat-form-field>
+
+              <mat-form-field class="col-2">
+                <mat-label>Cep</mat-label>
+                <input matInput placeholder="Cep"
+                formControlName="cep" value={{formsRegister.value.cep}} >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>Cidade</mat-label>
+                <input matInput placeholder="Cidade"
+                formControlName="cidade" value={{formsRegister.value.cidade}} >
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>UF</mat-label>
+                <mat-select formControlName="estado" value={{formsRegister.value.estado}}>
+                  <mat-option>Selecione</mat-option>
+
+                  <mat-option value="AC">Acre</mat-option>
+                  <mat-option value="AL">Alagoas</mat-option>
+                  <mat-option value="AP">Amapá</mat-option>
+                  <mat-option value="AM">Amazonas</mat-option>
+                  <mat-option value="BA">Bahia</mat-option>
+                  <mat-option value="CE">Ceará</mat-option>
+                  <mat-option value="DF">Distrito Federal</mat-option>
+                  <mat-option value="ES">Espírito Santo</mat-option>
+                  <mat-option value="GO">Goiás</mat-option>
+                  <mat-option value="MA">Maranhão</mat-option>
+                  <mat-option value="MT">Mato Grosso</mat-option>
+                  <mat-option value="MS">Mato Grosso do Sul</mat-option>
+                  <mat-option value="MG">Minas Gerais</mat-option>
+                  <mat-option value="PA">Pará</mat-option>
+                  <mat-option value="PB">Paraíba</mat-option>
+                  <mat-option value="PR">Paraná</mat-option>
+                  <mat-option value="PE">Pernambuco</mat-option>
+                  <mat-option value="PI">Piauí</mat-option>
+                  <mat-option value="RJ">Rio de Janeiro</mat-option>
+                  <mat-option value="RN">Rio Grande do Norte</mat-option>
+                  <mat-option value="RS">Rio Grande do Sul</mat-option>
+                  <mat-option value="RO">Rondônia</mat-option>
+                  <mat-option value="RR">Roraima</mat-option>
+                  <mat-option value="SC">Santa Catarina</mat-option>
+                  <mat-option value="SP">São Paulo</mat-option>
+                  <mat-option value="SE">Sergipe</mat-option>
+                  <mat-option value="TO">Tocantins</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-label>País</mat-label>
+                <mat-select formControlName="pais" value={{formsRegister.value.pais}}>
+                  <mat-option>Selecione</mat-option>
+                  <mat-option value="Afeganistao"> Afeganistão </mat-option>
+                  <mat-option value="África do Sul"> África do Sul </mat-option>
+                  <mat-option value="Akrotiri"> Akrotiri </mat-option>
+                  <mat-option value="Albânia"> Albânia  </mat-option>
+                  <mat-option value="Alemanha"> Alemanha </mat-option>
+                  <mat-option value="Andorra"> Andorra </mat-option>
+                  <mat-option value="Angola"> Angola </mat-option>
+                  <mat-option value="Anguila"> Anguila </mat-option>
+                  <mat-option value="Antárctida"> Antárctida </mat-option>
+                  <mat-option value="Antígua e Barbuda"> Antígua e Barbuda </mat-option>
+                  <mat-option value="Arábia Saudita"> Arábia Saudita </mat-option>
+                  <mat-option value="Arctic Ocean"> Arctic Ocean </mat-option>
+                  <mat-option value="Argélia"> Argélia </mat-option>
+                  <mat-option value="Argentina"> Argentina </mat-option>
+                  <mat-option value="Arménia"> Arménia </mat-option>
+                  <mat-option value="Aruba"> Aruba </mat-option>
+                  <mat-option value="Austrália"> Austrália </mat-option>
+                  <mat-option value="Austrália"> Áustria </mat-option>
+                  <mat-option value="Azerbaijão"> Azerbaijão </mat-option>
+                  <mat-option value="Bangladeche"> Bangladeche </mat-option>
+                  <mat-option value="Bolívia"> Bolívia </mat-option>
+                  <mat-option value="Bósnia e Herzegovina"> Bósnia e Herzegovina </mat-option>
+                  <mat-option value="Botsuana"> Botsuana </mat-option>
+                  <mat-option value="Brasil"> Brasil </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </mat-card>
+          </div> 
+
+          <div class="col-sm-12 col-md-4">
+            <mat-slide-toggle formControlName="flagAtivo" class="col-12">Inativo
+            </mat-slide-toggle>
+          </div>
+              
+            </form>
+          </div>
+        </div>
+        <div class="d-flex">
+            <div class=" offset-md-10">
+                <button mat-button class="col-12" (click)="limpar()">Limpar</button>
+              </div>
+          <div class="ml-auto">
+            <button mat-button class="col-12" [disabled]="!formsRegister.valid" (click)="salvarFornecedor()"><span class="material-icons">save</span>Salvar</button>
+          </div>
+        </div> 
+      </mat-card>
+    </div>
+      <div class="col-12 mt-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPJ'">
+        <mat-card class="mat-card-list">
+            <mat-card-title>Lista de Fornecedores PJ</mat-card-title> 
+            <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Filtro de Fornecedores PJ
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="filterFormFornecedorPj" class="row">
+
+                  <mat-form-field class="col-xs-12 col-md-4">
+                    <mat-label>Razão Social</mat-label>
+                    <input matInput placeholder="Razão Social" formControlName="razaoSocialFilterCtrl">
+                  </mat-form-field>
+
+                  <div class="col-xs-12 col-md-1">
+                    <button mat-button class="mt-2" (click)="filterTabelaFornecedorPj()"><mat-icon>search</mat-icon>Buscar</button>
+                  </div>
+                  
+                </form>
+              </mat-expansion-panel>
+            </mat-accordion>
+              <div class="mat-elevation-z8 mt-2">
+                <table mat-table [dataSource]="dataSourcePj">
+                  <ng-container matColumnDef="razaoSocial">
+                    <th mat-header-cell *matHeaderCellDef id="razaoSocial"> Razão Social</th>
+                    <td mat-cell *matCellDef="let element" > {{ element.razaoSocial }} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="endereco">
+                    <th mat-header-cell *matHeaderCellDef id="endereco"> Endereço </th>
+                    <td mat-cell *matCellDef="let element" > {{ element.endereco }} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="telefone">
+                    <th mat-header-cell *matHeaderCellDef id="quantidade"> Telefone </th>
+                    <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef id="status"> Status </th>
+                    <td mat-cell *matCellDef="let element" > {{ element.status }} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
+                    <td mat-cell *matCellDef="let element">
+                      <button mat-icon-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                      </button>
+                      <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="getRowTableFornecedorPj(element)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                        <button mat-menu-item (click)="excluirFornecedorPj(element.idFornecedorPJ)">
+                          <mat-icon>delete</mat-icon>
+                          <span>Deletar</span>
+                        </button>
+                      </mat-menu>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsPj"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsPj;"></tr>
+                </table>
+                <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+              </div>
+          </mat-card>
+    </div>
+
+    <div class="col-12 mt-2" *ngIf="formsRegister.value.tipoFornecedor === 'fornecedorPF'">
+      <mat-card class="mat-card-list">
+          <mat-card-title>Lista de Fornecedores PF</mat-card-title> 
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Filtro de Fornecedores PF
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <form [formGroup]="filterFormFornecedorPf" class="row">
+
+                
+
+                <mat-form-field class="col-xs-12 col-md-4">
+                  <mat-label>Nome</mat-label>
+                  <input matInput placeholder="Nome" formControlName="nomeFilterCtrl">
+                </mat-form-field>
+
+                <div class="col-xs-12 col-md-1">
+                  <button mat-button class="mt-2" (click)="filterTabelaFornecedorPf()"><mat-icon>search</mat-icon>Buscar</button>
+                </div>
+              </form>
+            </mat-expansion-panel>
+          </mat-accordion>
+            <div class="mat-elevation-z8 mt-2">
+              <table mat-table [dataSource]="dataSourcePf">
+                    <ng-container matColumnDef="nome">
+                      <th mat-header-cell *matHeaderCellDef id="nome"> Nome </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.nome }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="endereco">
+                      <th mat-header-cell *matHeaderCellDef id="endereco"> Endereço </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.endereco }} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="telefone">
+                      <th mat-header-cell *matHeaderCellDef id="telefone"> Telefone </th>
+                      <td mat-cell *matCellDef="let element" > {{element.telefone}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef id="status"> Status </th>
+                      <td mat-cell *matCellDef="let element" > {{ element.status }} </td>
+                    </ng-container>
+                  <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef id="action"> Ações </th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button mat-menu-item (click)="getRowTableFornecedorPf(element)">
+                          <mat-icon>edit</mat-icon>
+                          <span>Editar</span>
+                      </button>
+                      <button mat-menu-item (click)="excluirFornecedorPf(element.idFornecedorPF)">
+                        <mat-icon>delete</mat-icon>
+                        <span>Deletar</span>
+                      </button>
+                    </mat-menu>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsPf"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsPf;"></tr>
+              </table>
+              <mat-paginator #MatPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> 
+            </div>
+        </mat-card>
+  </div>
+  </div>
+</section>
+

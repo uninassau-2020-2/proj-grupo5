@@ -1,0 +1,64 @@
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+body{
+	margin: 0;
+	padding: 0;
+	background: #fff;
+	color: #fff;
+	font-family: Arial;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+.body{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	//background-image: linear-gradient(red, yellow);
+	background-image: url("/assets/imagens/background_inicial.jpeg");
+	background-size: cover;
+	z-index: 0;
+	opacity: 2.8;
+	overflow: hidden;
+}
+
+* {
+	box-sizing: border-box;
+  }
+
+  :host {
+	display: flex;
+	justify-content: center;
+	
+  }
+
+  .mat-form-field {
+	width: 100%;
+	min-width: 300px;
+  }
+
+  mat-card-content {
+	margin-top: -10px;
+	display: flex;
+	justify-content: center;
+	width: 350px;
+  }
+
+  img {
+	height: 137px;
+	width: 350px;
+	margin-bottom: 5px;
+  }
+
+  .btn-entrar {
+	  font-size: 20px;
+  }
+
+  .mat-icon {
+	margin-top: -3px;
+  }
+
+  

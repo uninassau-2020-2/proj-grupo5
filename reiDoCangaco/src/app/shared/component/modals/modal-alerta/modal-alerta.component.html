@@ -1,0 +1,18 @@
+
+    <div class="top">
+
+      <h1 class="material-icons"> error_outline</h1>
+    
+    </div>
+    <p>Tem certeza que deseja remover 
+      <span>{{ data.descProduto }} de  {{ data.preco | currency: 'BRL' }}</span>
+       da lista?</p>
+    
+  <hr class="mb-4" />
+  <div class="row d-flex">
+    <button mat-button class="col-6" [mat-dialog-close]="true"> Sim </button>
+    <button mat-button class="col-6" [mat-dialog-close]="false"> Não </button>
+  </div>
+
+
+
